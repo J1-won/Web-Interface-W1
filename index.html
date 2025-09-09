@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>카페인 함량 계산기</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Grandiflora+One&family=Slabo+27px&display=swap" rel="stylesheet">
+	<style type=text/css>
+		html {
+		  line-height: 1.6;
+		  font-size: 1.2rem;
+		  scroll-behavior: smooth;background-color: lightgreen;
+		}
+		body,h1,h2,p,ol,ul{margin:0;padding:0;overflow:hidden}
+		h1 {font-family: "Grandiflora One", cursive;
+		  font-weight: 400;text-align: center;padding-top:100px;padding-bottom: 30px;font-style: normal;line-height: 1.6;font-size: 3.2rem;}
+		p {font-family: "Gowun Batang", serif;text-align: center;padding-bottom: 30px;font-size: 0.9rem;}
+		section {padding: 50px 0}
+		.wrap {width:800px;margin:auto;}
+		.option {margin: 20px 0;font-size: 1rem;font-family: "Gowun Batang", cursive;}
+		.divider-line {position: relative;z-index: 2;width: 100%;height: 1.1px;background-color: black;opacity: 1;}
+		.padding-bottom {padding-bottom: 20px;}
+		.flex {display: flex;}
+		.menu-row{
+			display:flex; align-items:center; gap:16px;
+			padding:5px 0 30px 0; font-family:"Gowun Batang",serif; font-size:1rem;
+		}
+		.col-name{flex:2;}
+		.col-mg{flex:1; text-align:left;padding-left:200px; opacity:.85;}
+		.col-ctrl{flex:1; text-align:right;}
+		.center {text-align: center;padding-top:50px;}
+		.p2 {font-family: "Gowun Batang", serif;font-size: 0.65rem;padding-top:10px;}
+		.p3 {font-family: "Gowun Batang", serif;font-size: 1.3rem;padding-top:30px;text-decoration: underline;text-decoration-style: wavy;text-decoration-thickness: 0.8px;text-underline-offset: 7px;}
+		.image {text-align: center;padding: 40px 0px;}
+		.img {text-align: center;}
+		.img2 {text-align: center;padding-bottom:20px;}
+		.img2 img{max-height: 430px;}
+		select{font-family:"Gowun Batang",serif; font-size:1rem; padding:0px 6px;border:none;background: transparent;}
+		button {padding: 10px;
+		  font-size: 0.9rem;font-family: "Gowun Batang", serif;
+		  text-decoration: underline;border: none;
+		  text-decoration-style: wavy;text-decoration-thickness: 0.8px;text-underline-offset: 4.2px;background-color: transparent;
+		  color: black;cursor: pointer;}
+		button:hover {color: magenta;transition: all 0.3s;}
+	</style>
+</head>
+<body>
+	<h1>카페인 함량 계산기</h1>
+	<div class="wrap" id="app">
+		<p>적당량의 커피는 몸에 좋습니다... 아님 말고
+	<section>
+		<div class="divider-line"></div>
+		<div class="menu-row">
+			<div class="col-name">Iced Americano</div>
+			<div class="col-mg">150mg</div>
+			<div class="col-ctrl">
+				<select id="americano">
+					<option value="0">0잔</option>
+					<option value="1">1잔</option>
+					<option value="2">2잔</option>
+					<option value="3">3잔</option>
+				</select>
+			</div>
+		</div>
+		<div class="divider-line"></div>
+
+		<div class="menu-row">
+			<div class="col-name">Cafe Latte</div>
+			<div class="col-mg">75mg</div>
+			<div class="col-ctrl">
+				<select id="latte">
+					<option value="0">0잔</option>
+					<option value="1">1잔</option>
+					<option value="2">2잔</option>
+					<option value="3">3잔</option>
+				</select>
+			</div>
+		</div>
+		<div class="divider-line"></div>
+
+		<div class="menu-row">
+			<div class="col-name">De-Caf</div>
+			<div class="col-mg">10mg</div>
+			<div class="col-ctrl">
+				<select id="decaf">
+					<option value="0">0잔</option>
+					<option value="1">1잔</option>
+					<option value="2">2잔</option>
+					<option value="3">3잔</option>
+				</select>
+			</div>
+		</div>
+		<div class="divider-line"></div>
+		<div class="p2">✱위 음료의 카페인 함량은 별다방 메뉴 기준입니다. <br>✱✱콜드브루 메뉴는 카페인 함량이 아메리카노와 같습니다.</div>
+		</p>
+		<div class="wrap center">
+			<button onclick="showResult()">결과 보기</button>
+		</div>
+	</div>
+	</section>
+	<script>
+		function showResult(){
+			var americano = document.getElementById("americano").value;
+			var latte = document.getElementById("latte").value;
+			var decaf = document.getElementById("decaf").value;
+
+			var total = (americano*150) + (latte*75) + (decaf*10);
+
+			document.body.innerHTML = "<h1>카페인 함량 계산기</h1>";
+			document.body.innerHTML += "<p class=\"p3\">총 카페인 섭취량: " + total + "mg</p>";
+
+			if(total <= 300){
+				document.body.innerHTML += "<div class=\"wrap image\"><img src=\"relax.gif\"></div>"
+				document.body.innerHTML += "<p>아직 여유롭네요 ☁️ 한 잔 더 마셔도 괜찮을지도?</p>";}
+			else if(total <= 400){
+				document.body.innerHTML += "<div class=\"wrap img\"><img src=\"more.gif\"></div>"
+				document.body.innerHTML += "<p>살짝 아슬아슬🎢 하지만 아직 괜찮습니다!</p>";}
+			else{
+				document.body.innerHTML += "<div class=\"wrap img2\"><img src=\"heart.gif\"></div>"
+				document.body.innerHTML += "<p>🚨 카페인 과부하! 심장이 탭댄스 추기 시작합니다.</p>";}
+		}
+	</script>
+</body>
+</html>
